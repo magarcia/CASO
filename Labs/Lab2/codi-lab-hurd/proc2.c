@@ -13,6 +13,7 @@ mach_msg_type_number_t processor_listCnt = 0;
 
 int main ()
 {
+    // Define vars
     int res, i;
     mach_port_t host_privileged_port;
     device_t device_privileged_port;
