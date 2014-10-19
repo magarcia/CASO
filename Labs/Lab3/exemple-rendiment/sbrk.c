@@ -25,7 +25,7 @@ void main () {
     gettimeofday(&end, NULL); // Get end time
 
     // Get elapset time seconds
-    long t = (end.tv_sec*1e6 + eAnd.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
+    long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
     double time = (double)t/1e6;
 
     printf("%0.5f s (%0.5f s/sbrk)\n", time, time/N);
