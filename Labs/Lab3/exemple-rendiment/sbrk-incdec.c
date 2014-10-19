@@ -26,7 +26,7 @@ void main () {
     gettimeofday(&end, NULL); // Get end time
 
     // Get elapset time seconds
-    unsigned long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
+    unsigned long time = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
 
     printf("Increment %d  -  %lu usec (%lf usec/sbrk)\n", (int)inc, time, time/N);
 }
