@@ -18,6 +18,9 @@ sched_yield: sched_yield.c
 getpid: getpid.c
 	gcc -O -o $@ $<
 
+fork_waitpid: fork_waitpid.c
+	gcc -O -o $@ $<
+
 sleep_2: sleep_2.c
 	gcc -O -o $@ $<
 
