@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define    N    1000000
+#define    N    10e6
 
 void main () {
 
@@ -25,8 +25,7 @@ void main () {
     gettimeofday(&end, NULL); // Get end time
 
     // Get elapset time seconds
-    long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
-    double time = (double)t/1e6;
+    unsigned long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
 
-    printf("%lf s (%lf s/sbrk)\n", time, time/N);
+    printf("%lu usec (%lf usec/sbrk)\n", time, time/N);
 }
