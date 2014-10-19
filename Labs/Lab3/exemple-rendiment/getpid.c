@@ -8,7 +8,6 @@ void main () {
 
     // Define vars
     unsigned int i;
-    int res;
     pid_t pid;
     struct timeval start, end;
 
