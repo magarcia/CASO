@@ -29,5 +29,5 @@ void main () {
     long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
     double time = (double)t/1e6;
 
-    printf("Increment %d  -  %0.5f s (%0.5f s/sbrk)\n", (int)inc, time, time/N);
+    printf("Increment %d  -  %lf s (%lf s/sbrk)\n", (int)inc, time, time/N);
 }
