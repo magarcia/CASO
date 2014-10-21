@@ -7,7 +7,7 @@
 #include <hurd.h>
 
 void help() {
-    fprintf (stderr, "USAGE: %s [-r|-s] PID1 [PID2...]\n", argv[0]);
+    fprintf (stderr, "USAGE: mtask [-r|-s] PID1 [PID2...]\n");
     fprintf (stderr, "\t-r: Resume tasks identified by PID's\n");
     fprintf (stderr, "\t-s: Suspend tasks identified by PID's\n");
     exit(1);
@@ -28,7 +28,7 @@ int main (int argc, char *argv[])
 
     // Check parameters and show help if necessary
     if (argc < 3) {
-        help()
+        help();
     }
 
     // Check if first option si -r of -s
@@ -37,7 +37,7 @@ int main (int argc, char *argv[])
     else if (strcmp (argv[1], "-s") == 0)
         res_susp = 0;
     else {
-        help()
+        help();
     }
 
     // Get PIDs from params

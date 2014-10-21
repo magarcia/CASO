@@ -56,7 +56,7 @@ int main ()
 
         res = processor_info(processor_list[i], PROCESSOR_BASIC_INFO,
                              host, processor_info_data,
-                             &processor_infoCnt)
+                             &processor_infoCnt);
 
         if (res != KERN_SUCCESS) {
             printf ("Error getting processor info (0x%x), %s\n", res,
@@ -82,7 +82,7 @@ int main ()
         else
             printf("Master?:\t\tNO\n");
 
-        printf("\n\n")
+        printf("\n\n");
 
 
     }
