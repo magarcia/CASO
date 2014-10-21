@@ -10,10 +10,11 @@
 #include <sys/file.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <limits.h>
 #include <time.h>
 
 #define BLOCK_SIZE 1000
-#define NWORKERS   1
+#define NWORKERS   4
 
 #define OUTPUT
 
@@ -51,7 +52,7 @@ int get_file(char * dirname, char * fname)
 
 #ifdef OUTPUT
    res = stat(dirname, &statbuf);
-   if (res < 0) { 
+   if (res < 0) {
       perror ("stat");
       fprintf (stderr, "   checking directory %s\n", dirname);
       res = mkdir(dirname, 0750);
@@ -140,7 +141,7 @@ void * wait_for_work(void * arg)
       exit (1);
    }
 
-   if (work != (void *) -1) 
+   if (work != (void *) -1)
       res = get_file ("parallel-out.tmp", work);
 
   } while (work != (void *) -1);
@@ -175,15 +176,19 @@ void more_work(char *fname)
 
    if (fname == (void *) -1) {
       // Wakeup all workers to end the processing
-
-
-
+      res = pthread_cond_broadcast(&work_array_full_condition);
+      if (res != 0) {
+         fprintf (stderr, "(more_work) pthread_cond_broadcast: %s\n", strerror (res));
+         exit(1);
+      }
    }
    else {
       // Wakeup a worker if any is sleepping
-
-
-
+      res = pthread_cond_signal(&work_array_full_condition);
+      if (res != 0) {
+         fprintf (stderr, "(wait_for_for) pthread_cond_signal: %s\n", strerror (res));
+         exit(1);
+      }
    }
 
    // leaving the critical section

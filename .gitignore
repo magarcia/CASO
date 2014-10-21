@@ -31,3 +31,5 @@
 # CUSTOM
 *.img
 *.out
+*.tmp
+*.DS_store
