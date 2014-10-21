@@ -14,9 +14,7 @@
 float data[PAGESIZE/sizeof(float)] __attribute__((aligned(PAGESIZE)));
 
 void help() {
-    fprintf (stderr, "USAGE: mtask [-r|-s] PID1 [PID2...]\n");
-    fprintf (stderr, "\t-r: Resume tasks identified by PID's\n");
-    fprintf (stderr, "\t-s: Suspend tasks identified by PID's\n");
+    fprintf (stderr, "USAGE: vm-read PID ADDRESS\n");
     exit(1);
 
 }
@@ -28,6 +26,7 @@ int main (int argc, char *argv[]) {
     vm_address_t address, data;
     int data_cnt;
     unsigned int i;
+    mach_port_t task_port;
 
     // Check parameters and show help if necessary
     if (argc < 3) {
@@ -40,14 +39,20 @@ int main (int argc, char *argv[]) {
 
     // Get task
     task_t task = pid2task(pid);
-
-    // Read memory
-    res = vm_read(task, address, PAGESIZE, &data, &data_cnt);
+    res = task_get_kernel_port(task, &task_port);
     if (res != KERN_SUCCESS) {
-        printf("Error allocating memory: 0x%x, %s\n", res,
+        printf("Error getting task port: 0x%x, %s\n", res,
                 mach_error_string(res));
         exit(1);
     }
-    printf(data);
+
+    // Read memory
+    res = vm_read(task_port, address, PAGESIZE, &data, &data_cnt);
+    if (res != KERN_SUCCESS) {
+        printf("Error reading memory: 0x%x, %s\n", res,
+                mach_error_string(res));
+        exit(1);
+    }
+    printf("%d\n", &data);
 
 }
