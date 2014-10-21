@@ -1,4 +1,4 @@
-all: sleep_2 curtime sbrk sbrk-incdec sched_yield getpid write-to-disk read-from-disk
+all: sleep_2 curtime sbrk sbrk-incdec sched_yield getpid fork_waitpid write-to-disk read-from-disk
 
 write-to-disk: write-to-disk.c
 	gcc -O -o $@ $<
