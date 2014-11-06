@@ -33,3 +33,12 @@
 *.out
 *.tmp
 *.DS_store
+Exercises/Ex1/filewriter
+Exercises/Ex1/output
+Labs/Lab3/exemple-rendiment/foo.plg
+Labs/Lab3/exemple-rendiment/force.dat
+Labs/Lab3/exemple-rendiment/read-from-disk
+Labs/Lab3/exemple-rendiment/write-to-disk
+Labs/Lab3/exemple-rendiment/write-to-disk1
+Labs/Lab3/exemple-rendiment/write-to-disk2
+
