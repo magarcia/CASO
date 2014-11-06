@@ -3,6 +3,9 @@ all: sleep_2 curtime sbrk sbrk-incdec sched_yield getpid fork_waitpid write-to-d
 write-to-disk: write-to-disk.c
 	gcc -O -o $@ $<
 
+write-to-disk-debug: write-to-disk.c
+	gcc -DDEBUG -O -o $@ $<
+
 write-to-disk1: write-to-disk1.c
 	gcc -O -o $@ $<
 

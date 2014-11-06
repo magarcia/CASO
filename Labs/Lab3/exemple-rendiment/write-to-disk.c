@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <sys/time.h>
 #include <sys/times.h>
 
 void error(char *msg) {
@@ -9,16 +10,14 @@ void error(char *msg) {
     exit(1);
 }
 
-
 int main(int argc, char *argv[])
 {
     // Init vars
     FILE *fd;
-    int n,i, sec, usec, sizeMB, rounds, pad;
+    int i, sec, usec, sizeMB, rounds, pad;
     unsigned long int size;
     float bandwidth;
-    struct timeval start, end;
-    char fmt_string[20];
+    struct timeval start, end, res;
     char *buffer;
     char *filename;
 
@@ -50,22 +49,17 @@ int main(int argc, char *argv[])
     }
 
     fd = fopen(filename, "w+"); // Open file
-
+    
     gettimeofday(&start, NULL); // Get start time
 
     // Write to file
     for(i = 0; i < rounds; i++){
-        #ifdef DEBUG
-        printf("Writing %d bytes in round %d\n", 1024*1024*1024, i+1);
-        #endif
         fwrite(buffer, sizeof(char), size, fd);
     }
     if (pad > 0) {
-        #ifdef DEBUG
-        printf("Writing %d bytes of pad\n\n", pad*1024*1024);
-        #endif
         fwrite(buffer, sizeof(char), pad*1024*1024, fd);
     }
+
 
     gettimeofday(&end, NULL); // Get end time
 
@@ -76,17 +70,17 @@ int main(int argc, char *argv[])
     fclose(fd); // Close the file
 
     // Get elapset time seconds
-    sec = end.tv_sec - start.tv_sec;
-    usec = end.tv_usec - start.tv_usec;
-    long t = (end.tv_sec*1e6 + end.tv_usec) - (start.tv_sec*1e6 + start.tv_usec);
+    timersub(&end, &start, &res);
+    long t = res.tv_sec*1e6 + res.tv_usec;
 
-    sizeMB = (int)(size / 1000 / 1000); // Get size in MB
 
     // Calculate bandwidth
-    sprintf(fmt_string, "%d.%d",sec, usec);
-    bandwidth = sizeMB / atof(fmt_string);
-
-    printf("%lu bytes (%d MB) writed, %f s, %.2f MB/s\n", size, sizeMB, (double)t/1e6, bandwidth);
+    bandwidth = (float)(size/1024/1024)/((long double)t/1e6);
+    #ifdef DEBUG
+    printf("%d\t%.2f\n", (int)(size/1024/1024), bandwidth);
+    #else
+    printf("%lu bytes (%d MB) writed, %Lf s, %.2f MB/s\n", size, (int)(size/1024/1024), (long double)t/1e6, bandwidth);
+    #endif
 
     exit(EXIT_FAILURE);
 }
