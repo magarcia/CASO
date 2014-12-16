@@ -4,6 +4,18 @@
 
 ## Info
 
+- [write-to-disk.c](https://github.com/magarcia/CASO/blob/master/Labs/Lab3/exemple-rendiment/write-to-disk.c)
+Pruebas de escritura a disco version "final"
+
+- [write-to-disk1.c](https://github.com/magarcia/CASO/blob/master/Labs/Lab3/exemple-rendiment/write-to-disk1.c)
+Pruebas de escritura a disco version 1
+
+- [write-to-disk2.c](https://github.com/magarcia/CASO/blob/master/Labs/Lab3/exemple-rendiment/write-to-disk2.c)
+Pruebas de escritura a disco version 2
+
+- [read-from-disk.c](https://github.com/magarcia/CASO/blob/master/Labs/Lab3/exemple-rendiment/read-from-disk.c)
+Realiza pruevas de lectura en ficheros en disco.
+
 - [process_data.sh](https://github.com/magarcia/CASO/blob/master/Labs/Lab3/exemple-rendiment/process_data.sh) Realiza
 diferentes pruebas y genera dos ficheros de salida usb.dat y hdd.dat. Necesita
 los ficheros `usb-test-write.dat` y `hdd-test-write.dat`. Para generarlos:
