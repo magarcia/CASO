@@ -43,4 +43,5 @@ curtime: curtime.c
 clean:
 	rm -f write-to-disk write-to-disk.o read-from-disk read-from-disk.o \
               sbrk sbrk.o sched_yield sched_yield.o getpid getpid.o \
-              sleep_2 sleep_2.o curtime curtime.o
+              sleep_2 sleep_2.o curtime curtime.o write-to-disk2 \
+              write-to-disk1 write-to-disk-debug fork_waitpid
