@@ -15,6 +15,5 @@ External disk **23**
 
 ## Other sources
 
-[Caso Web page](http://docencia.ac.upc.edu/FIB/grau/CASO/)
-
-[darak1313 labs](https://github.com/darak1313/CASO/)
+- [Caso Web page](http://docencia.ac.upc.edu/FIB/grau/CASO/)
+- [darak1313 labs](https://github.com/darak1313/CASO/)
