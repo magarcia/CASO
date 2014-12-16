@@ -14,10 +14,12 @@ char * alloc_disk_memory(unsigned long size)
    char * p = NULL;
    unsigned long i;
 
+   // Comprovem que size no es masa gran
    if(size > xrd_size*1024) {
       return NULL;
    }
 
+   // Allocatem espai a memoria aligian pagina
    p = (char *) vmalloc(PAGE_ALIGN(size));
    for(i = 0; i < size; ++i) {
       p[i] = i % 256;
@@ -30,6 +32,7 @@ char * alloc_disk_memory(unsigned long size)
 
 void   free_disk_memory(char * disk_mem)
 {
+   // Alliberem memoria
    if(disk_mem != NULL) {
       vfree((const void*) disk_mem);
    }
