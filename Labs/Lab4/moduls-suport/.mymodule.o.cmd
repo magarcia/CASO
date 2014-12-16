@@ -1,0 +1,1 @@
+cmd_/media/sf_Labs/Lab4/moduls-suport/mymodule.o := ld -m elf_x86_64   -r -o /media/sf_Labs/Lab4/moduls-suport/mymodule.o /media/sf_Labs/Lab4/moduls-suport/interface.o /media/sf_Labs/Lab4/moduls-suport/implementation.o 

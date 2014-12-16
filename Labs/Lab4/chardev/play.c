@@ -13,7 +13,7 @@ int main()
 {
    char * memory;
    int res, i;
-   int fd = open ("mychardrv", O_RDWR, 0);
+   int fd = open ("/dev/mychardrv", O_RDWR, 0);
 
 #if 0
    int fd2;
@@ -70,7 +70,7 @@ int main()
       cbuf[res] = '\0';
       printf ("Read '%s' (%d bytes)\n", cbuf, res);
    }
-   
+
    for (i=0; i < 100; i++) cbuf[i] = 'a';
    res = read(fd, cbuf, 28);
    if (res < 0) perror ("read");
@@ -78,12 +78,12 @@ int main()
       cbuf[res] = '\0';
       printf ("Read '%s' (%d bytes)\n", cbuf, res);
    }
-   
+
 
    res = ioctl (fd, SET_STRING_ID, 91);
    if (res < 0) perror ("ioctl SET_STRING_ID");
-   
-   memory = mmap(0x100000000000, getpagesize(), PROT_READ | PROT_WRITE, 
+
+   memory = mmap(0x100000000000, getpagesize(), PROT_READ | PROT_WRITE,
                        MAP_FIXED | MAP_ANONYMOUS | MAP_PRIVATE,
                        -1, 0L);
    if (memory == (void *) -1) {
@@ -93,7 +93,7 @@ int main()
    printf ("memory at %lx\n", memory);
 
 //   memory[4096] = 0;
-   
+
    strcpy (&memory[4090], "hola ");
    res = write(fd, &memory[4090], 27);
    if (res < 0) perror ("write");
@@ -106,7 +106,7 @@ int main()
       cbuf[res] = '\0';
       printf ("Read '%s' (%d bytes)\n", cbuf, res);
    }
-   
+
 #if 0
    fd2 = open ("myfile.txt", O_RDWR | O_TRUNC | O_CREAT, 0664);
    if (fd2 < 0) {
@@ -130,7 +130,7 @@ int main()
 
    res = ioctl (fd, SET_STRING_ID, 9);
    if (res < 0) perror ("ioctl SET_STRING_ID");
-   
+
 
    for (i=0; i < 100; i++) cbuf[i] = 'a';
    res = read(fd, cbuf, 28);
@@ -139,9 +139,9 @@ int main()
       cbuf[res] = '\0';
       printf ("Read '%s' (%d bytes)\n", cbuf, res);
    }
-   
-   
- 
+
+
+
 
    close(fd);
 

@@ -38,7 +38,7 @@ static int mychardrv_open(struct inode * inode, struct file * file)
       // implementation, increment num_opens
       ++num_opens;
       // initialize the string table associated to the file
-      struct strings_representation * sr = 
+      struct strings_representation * sr =
                      kzalloc(sizeof(struct strings_representation), GFP_USER);
       sr->next = NULL;
       sr->current_id = -1;
@@ -55,9 +55,11 @@ static int mychardrv_close(struct inode * inode, struct file * file)
    printk(KERN_DEBUG "device release! (minor %d)\n", minor);
    // implementation, decrease num_opens
    --num_opens;
-   // release memory at file->pricate_data !!!
+   // release memory at file->private_data !!!
 
    // TODO
+   struct strings_representation * sr = file->private_data;
+   kfree(sr);
 
 
    return 0;
@@ -144,7 +146,7 @@ static ssize_t mychardrv_read(struct file * f, char __user * address,
    struct file_string * fstr = find_file_string(f);
    printk(KERN_DEBUG "device read to user address %p\n", address);
    printk(KERN_DEBUG "   requested size %ld bytes\n", size);
-   if (offset==NULL) 
+   if (offset==NULL)
       printk(KERN_DEBUG "   current file offset not provided (NULL)\n");
    else
       printk(KERN_DEBUG "   current file offset %lld\n", *offset);
@@ -180,7 +182,7 @@ static ssize_t mychardrv_read(struct file * f, char __user * address,
    return copy_size;
 }
 
-long mychardrv_ioctl (struct file * f, unsigned int command, unsigned long arg) 
+long mychardrv_ioctl (struct file * f, unsigned int command, unsigned long arg)
 {
    long ret = -EINVAL;
    struct strings_representation * sr = f->private_data;
@@ -198,10 +200,10 @@ long mychardrv_ioctl (struct file * f, unsigned int command, unsigned long arg)
 static const struct file_operations mychardrv_fops = {
         .owner          = THIS_MODULE,
         .open           = mychardrv_open,
-	.release        = mychardrv_close,
+	      .release        = mychardrv_close,
         .read           = mychardrv_read,
-	.unlocked_ioctl   = mychardrv_ioctl,
-	.write          = mychardrv_write,
+	      .unlocked_ioctl   = mychardrv_ioctl,
+	      .write          = mychardrv_write,
         //.llseek         = noop_llseek,
 };
 

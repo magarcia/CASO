@@ -9,7 +9,7 @@ External disk **23**
 - Instal·lació del Sistema Operatiu [Labs/Lab1](https://github.com/magarcia/CASO/tree/master/Labs/Lab1)
 - GNU Hurd [Labs/Lab2](https://github.com/magarcia/CASO/tree/master/Labs/Lab2)
 - Avaluació del rendiment [Labs/Lab3](https://github.com/magarcia/CASO/tree/master/Labs/Lab3)
-- Mòduls i dispositius [Labs/Lab4](https://github.com/magarcia/CASO/tree/master/Labs/Lab4) (**missing**)
+- Mòduls i dispositius [Labs/Lab4](https://github.com/magarcia/CASO/tree/master/Labs/Lab4)
 - Dispositius de bloc [Labs/Lab5](https://github.com/magarcia/CASO/tree/master/Labs/Lab5)
 - Linux per temps real [Labs/Lab6](https://github.com/magarcia/CASO/tree/master/Labs/Lab6) (**missing**)
 

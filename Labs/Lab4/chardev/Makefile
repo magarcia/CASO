@@ -25,7 +25,7 @@ play: play.c
 
 
 demo: default ./play-simple play
-	mknod mychardrv c 230 3
+	mknod /dev/mychardrv c 230 3
 	insmod mychardrv.ko
 	./play
 
@@ -48,4 +48,4 @@ mychardrv.mod.c        \
 mychardrv.mod.o        \
 mychardrv.o            \
 play                   \
-play-simple        
+play-simple

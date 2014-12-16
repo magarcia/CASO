@@ -14,7 +14,7 @@ int main()
 {
    char * memory;
    int res, i;
-   int fd = open ("mychardrv", O_RDWR, 0);
+   int fd = open ("/dev/mychardrv", O_RDWR, 0);
 
    if (fd < 0) {
       perror ("open");

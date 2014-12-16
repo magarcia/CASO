@@ -1,0 +1,1 @@
+cmd_/media/sf_Labs/Lab4/moduls-suport/mymodule.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /media/sf_Labs/Lab4/moduls-suport/mymodule.ko /media/sf_Labs/Lab4/moduls-suport/mymodule.o /media/sf_Labs/Lab4/moduls-suport/mymodule.mod.o

@@ -8,7 +8,7 @@ int cbuf[1024];
 
 int main()
 {
-   FILE * f = fopen ("mychardrv", "w+");
+   FILE * f = fopen ("/dev/mychardrv", "w+");
 
    int res;
 
