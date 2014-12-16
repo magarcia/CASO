@@ -1,4 +1,6 @@
-all: sleep_2 curtime sbrk sbrk-incdec sched_yield getpid fork_waitpid write-to-disk read-from-disk
+all: sleep_2 curtime sbrk sbrk-incdec sched_yield getpid fork_waitpid \
+	write-to-disk read-from-disk write-to-disk1 write-to-disk2 \
+	write-to-disk-debug write-to-disk2-debug
 
 write-to-disk: write-to-disk.c
 	gcc -O -o $@ $<
@@ -44,4 +46,5 @@ clean:
 	rm -f write-to-disk write-to-disk.o read-from-disk read-from-disk.o \
               sbrk sbrk.o sched_yield sched_yield.o getpid getpid.o \
               sleep_2 sleep_2.o curtime curtime.o write-to-disk2 \
-              write-to-disk1 write-to-disk-debug fork_waitpid
+              write-to-disk1 write-to-disk-debug fork_waitpid sbrk-incdec \
+              write-to-disk2-debug
